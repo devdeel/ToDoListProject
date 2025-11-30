@@ -3,7 +3,7 @@ package com.example.demo.Service;
 import com.example.demo.Model.ToDoModel;
 import com.example.demo.Repository.ToDoRepository;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Sort;
 import java.util.List;
 
 @Service
@@ -15,9 +15,11 @@ public class ToDoService {
         this.repository = repository;
     }
 
+
     public List<ToDoModel> getAllTasks() {
-        return repository.findAll();
+        return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
+
 
     public ToDoModel createTask(ToDoModel toDoModel) {
         return repository.save(toDoModel);
