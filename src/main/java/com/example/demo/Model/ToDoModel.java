@@ -14,8 +14,6 @@ public class ToDoModel {
     private Long id;
     private String title;
     private boolean done = false;
-
-
 }
 
 

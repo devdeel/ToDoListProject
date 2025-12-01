@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.Model.ToDoModel;
+import com.example.demo.Service.ToDoDTO;
 import com.example.demo.Service.ToDoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +20,10 @@ public class ToDoController {
         this.service = service;
     }
 
-    @GetMapping
-    public List<ToDoModel> getAllTasks() {
-        return service.getAllTasks();
-    }
+//    @GetMapping
+//    public List<ToDoDTO> getAllTasks() {
+//        return service.getAllTasks();
+//    }
 
     @PostMapping
     public ResponseEntity<ToDoModel> createTask(@RequestBody ToDoModel toDoModel) {
@@ -31,7 +32,7 @@ public class ToDoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ToDoModel> getTask(@PathVariable Long id) {
+    public ResponseEntity<ToDoDTO> getTask(@PathVariable Long id) {
         return ResponseEntity.ok(service.getTask(id));
     }
 
