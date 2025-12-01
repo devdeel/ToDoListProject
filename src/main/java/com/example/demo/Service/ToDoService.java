@@ -16,17 +16,20 @@ public class ToDoService {
     }
 
 
-    public List<ToDoModel> getAllTasks() {
-        return repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-    }
+//    public List<ToDoDTO> getAllTasks() {
+//        List<ToDoModel>  toDoModels= repository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+//
+//        return mapTODTP(toDoModels, new ToDoDTO());
+//    }
 
 
     public ToDoModel createTask(ToDoModel toDoModel) {
         return repository.save(toDoModel);
     }
 
-    public ToDoModel getTask(Long id) {
-        return repository.findById(id).orElse(null);
+    public ToDoDTO getTask(Long id) {
+        ToDoModel t =  repository.findById(id).orElse(null);
+        return mapTODTToAdmin(t,new ToDoDTO());
     }
 
     public ToDoModel upTask(Long id, ToDoModel newData) {
@@ -41,5 +44,9 @@ public class ToDoService {
 
     public void deleteTask(Long id) {
         repository.deleteById(id);
+    }
+    public ToDoDTO mapTODTToAdmin(ToDoModel toDo, ToDoDTO toDoDTO ){
+         toDoDTO.setTitle(toDo.getTitle());
+        return  toDoDTO;
     }
 }
